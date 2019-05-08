@@ -1,9 +1,18 @@
-// making const fs so i can use filesystem module
-const fs = require('fs');
+// const importedName = require('./utils.js');
 
-// filesystem - make file
-fs.writeFileSync('notes.txt', 'Ello raffle');
+// console.log(importedName);
+// doesn't work due to scoping - need to explicity state what to import
 
+const importAdd = require('./utils.js');
 
-// challenge 
-fs.appendFileSync('notes.txt', 'Ello Keenan');
+const sum = importAdd(4, -2);
+
+console.log(sum);
+
+// CHALLENGE
+
+const getNotesFunc = require('./notes.js');
+
+const notes = getNotesFunc();
+
+console.log(notes);

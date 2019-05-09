@@ -1,27 +1,54 @@
-const ch = require('chalk');
+// imports
 const yargs = require('yargs');
-const getNotesFunc = require('./notes.js');
 
 //shorthand
 const log = console.log;
-const notes = getNotesFunc();
 
-// customing yargs version 
+/*
+*   Customising yargs version  
+*/
 yargs.version('1.1.0')
 
-// creating list command 
+/*
+*   Creating add command  
+*/
+
+// creating new command argument - yargs object
 yargs.command({
     //name
     command: 'add',
     // description
     describe: 'Add a new note',
+    // builder object - all options to for command to support
+    builder: {
+        title: {
+            // description
+            describe: 'Note title',
+            // making it required
+            demandOption: true,
+            // enforcing type
+            type: 'string'
+        },
+        body: {
+            // description
+            describe: 'Note text',
+            // making it required
+            demandOption: true,
+            // enforcing type
+            type: 'string'
+        }
+    },
     // code to execute
-    handler: function () {
-        log('Adding new note');
+    handler: function (argv) {
+        log('Title: ' + argv.title);
+        log('Body: ' + argv.body);
     }
 })
 
-// creating remove command 
+/*
+*   Creating remove command  
+*/
+
 yargs.command({
     //name
     command: 'remove',
@@ -33,7 +60,10 @@ yargs.command({
     }
 })
 
-// creating list command 
+/*
+*   Creating List command  
+*/
+
 yargs.command({
     //name
     command: 'list',
@@ -45,7 +75,10 @@ yargs.command({
     }
 })
 
-// creating list command 
+/*
+*   Creating Read command  
+*/
+
 yargs.command({
     //name
     command: 'read',
@@ -57,5 +90,5 @@ yargs.command({
     }
 })
 
-// printing yargs
-log(yargs.argv);
+// parsing arguments with all config details 
+yargs.parse();

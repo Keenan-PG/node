@@ -1,14 +1,21 @@
-const validator = require('validator');
 const ch = require('chalk');
 const getNotesFunc = require('./notes.js');
 
+//shorthand
 const log = console.log;
 const notes = getNotesFunc();
-const email = "keenan@golding.com"
+const command = process.argv[2];
 
-log(notes);
-log(validator.isEmail(email));
+// printing args
+log(process.argv[2]);
 
-// chalk challenge
-
-log(ch.green.inverse.bold('Success!'));
+switch (command) {
+    case 'add':
+        log(ch.green.bold.inverse('Adding note.'));
+        break;
+    case 'remove':
+        log(ch.yellow.bold.inverse('Removing note.'))
+        break;
+    default: 
+        log(ch.red.bold.inverse('Please provide an intruction (add/remove).'))
+}

@@ -1,5 +1,6 @@
 // imports
 const yargs = require('yargs');
+const notes = require('./notes');
 
 //shorthand
 const log = console.log;
@@ -42,11 +43,12 @@ yargs.command({
     handler: function (argv) {
         log('Title: ' + argv.title);
         log('Body: ' + argv.body);
+        notes.addNote(argv.title, argv.body)
     }
 })
 
 /*
-*   Creating remove command  
+*   Creating Remove command  
 */
 
 yargs.command({
@@ -54,9 +56,20 @@ yargs.command({
     command: 'remove',
     // description
     describe: 'Remove a note',
+    // definiing command options 
+    builder : {
+        title: {
+            // description
+            describe: 'Note title',
+            // making it required
+            demandOption: true,
+            // enforcing type
+            type: 'string'
+        }
+    },
     // code to execute
-    handler: function () {
-        log('Removing note');
+    handler: function (argv) {
+        notes.removeNote(argv.title);
     }
 })
 

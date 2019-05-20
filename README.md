@@ -6,13 +6,14 @@ Pretty much dumping all my files here when playing with Node
 
 ### npm i (or npm install) 
 
-node_modules is ignored by Git, so first step (given node and npm are installed) would be to cd into the drive this is cloned from, and then run npm i (or npm install) this will download all dependencies. 
+node_modules is ignored by Git, so first step (given node and npm are installed):
+CD into the drive this is cloned from, into node-notes-app, and then run npm i (or npm install) this will download all dependencies.
 
-### yargs
+#### yargs
 
 yargs is funky. creates node arguments. basically a better way to create/access for process.argv.
 
-#### adding/removing a note
+### adding/removing a note
 
 there will be more functionality. but thus far, do this: 
 

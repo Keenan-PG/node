@@ -47,9 +47,9 @@ yargs.command({
     // code to execute
     handler: function (argv) {
         if (notes.addNote(argv.title, argv.body)) {
-            log(chalk.green.inverse('Note added; Title: "' + argv.title + '",  Body: "' + argv.body + '"'));
+            log(chalk.green.inverse(`Note added; Title: "${argv.title}",  Body: "${argv.body}"`));
         } else {
-            log(chalk.red.inverse('Note not added :( Title: "' + argv.title + '" is a duplicate.'));
+            log(chalk.red.inverse(`Note not added :( Title: "${argv.title}" is a duplicate.`));
         }
     }
 })
@@ -75,7 +75,7 @@ yargs.command({
     // code to execute
     handler: function (argv) {
         if (notes.removeNote(argv.title)) {
-            log(chalk.green.inverse('Note with title of ' + argv.title + ' removed!'));
+            log(chalk.green.inverse(`Note with title of ${argv.title} removed!`));
         } else {
             log(chalk.red.inverse('Title does not exist. No changes made!'));
         }

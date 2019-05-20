@@ -68,7 +68,31 @@ const addNote = (title, body) => {
 /* REMOVE NOTES */
 
 // remove note function
-const removeNote = function(title) {
+const removeNote = (title) => {
+    // loading notes array into local let (not const as if title exists it will be replaced)
+    let notes = loadNotes();
+
+    // filtering to make new array of notes without the title specified
+    const noteRemove = notes.filter((obj) => obj.title !== title);
+
+    // logic to ensure length of array is not the same as it was (as if it is, it's right to assume that title doesn't exist as there were no changes made)
+    if (notes.length !== noteRemove.length) {
+        // replacing notes array with array not including entry with title 
+        notes = noteRemove;
+        // saving back into file
+        saveNotes(notes);
+        // for conditionals in app
+        return true;
+    } else {
+        // for conditionals in app
+        return false;
+    }
+}
+
+/* LIST NOTES */
+
+// list notes function
+const listNotes = (title) => {
     // loading notes array into local let (not const as if title exists it will be replaced)
     let notes = loadNotes();
 
@@ -96,5 +120,6 @@ const removeNote = function(title) {
 module.exports = {
     getNotes: getNotes,
     addNote: addNote,
-    removeNote: removeNote
+    removeNote: removeNote,
+    listNotes: listNotes
 }; 

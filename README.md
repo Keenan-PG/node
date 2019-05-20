@@ -1,8 +1,8 @@
 # Node playground
 
-Pretty much dumping all my files here when playing with Node. Currently included: half of a CLI notes app 
+Pretty much dumping all my files here when playing with Node
 
-## Usage - notes
+## Usage - node-notes-app
 
 ### npm i (or npm install) 
 
@@ -18,5 +18,6 @@ there will be more functionality. but thus far, do this:
 
 ##### node app add --title="Note Title" --body="Note body"
 ##### node app remove --title="Note Title"
+It'll create & save data on a local JSON file :) 
 
 ###### *validation built in :) 

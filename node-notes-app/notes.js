@@ -13,6 +13,8 @@ const log = console.log;
 * BODY
 */
 
+/* ADD NOTES */
+
 function getNotes() {
     return 'Your notes...';
 }
@@ -39,17 +41,12 @@ const saveNotes = function (data) {
     fs.writeFileSync('notes.json', dataJSON);
 }
 
-// remove note function
-const removeNote = function(title) {
-    // loading notes array into local const
-    log('from remove note: ' + title);
-}
-
 // add note function
 const addNote = function(title, body) {
     // loading notes array into local const
     const notes = loadNotes();
-    // filter array - if title = obj.title, put that into an array
+
+    // filter array - if obj.title = title, put that into an array
     const duplicateNotes = notes.filter(function (obj) {
         return obj.title === title;
     })
@@ -68,6 +65,29 @@ const addNote = function(title, body) {
         log("Notes saved!")
     } else {
         log("Title taken. No duplicate notes allowed.")
+    }
+}
+
+/* REMOVE NOTES */
+
+// remove note function
+const removeNote = function(title) {
+    // loading notes array into local let (not const as if title exists it will be replaced)
+    let notes = loadNotes();
+
+    // filtering to make new array of notes without the title specified
+    const noteRemove = notes.filter(function(obj) {
+        return obj.title !== title
+    });
+
+    // logic to ensure length of array is not the same as it was (as if it is, it's right to assume that title doesn't exist as there were no changes made)
+    if (notes.length !== noteRemove.length) {
+        // replacing notes array with array not including entry with title 
+        notes = noteRemove;
+        // checking it worked 
+        log(notes);
+    } else {
+        log('Title does not exist. No changes made.')
     }
 }
 

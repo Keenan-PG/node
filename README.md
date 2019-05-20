@@ -10,7 +10,7 @@ node_modules is ignored by Git, so first step (given node and npm are installed)
 
 ### yargs
 
-yargs is funky. creates node arguments. basically a mask for event.handler(argv) (i think)
+yargs is funky. creates node arguments. basically a better way to create/access for process.argv.
 
 #### adding/removing a note
 

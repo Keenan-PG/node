@@ -1,18 +1,23 @@
-// imports
+/*
+* IMPORTS
+*/
 const yargs = require('yargs');
 const notes = require('./notes');
+const chalk = require('chalk');
 
-//shorthand
+/*
+* LAZY
+*/
 const log = console.log;
 
 /*
-*   Customising yargs version  
+* BODY
 */
+
+/*   Customising yargs version  */
 yargs.version('1.1.0')
 
-/*
-*   Creating add command  
-*/
+/*   Creating add command  */
 
 // creating new command argument - yargs object
 yargs.command({
@@ -41,15 +46,15 @@ yargs.command({
     },
     // code to execute
     handler: function (argv) {
-        log('Title: ' + argv.title);
-        log('Body: ' + argv.body);
-        notes.addNote(argv.title, argv.body)
+        if (notes.addNote(argv.title, argv.body)) {
+            log(chalk.green.inverse('Note added; Title: "' + argv.title + '",  Body: "' + argv.body + '"'));
+        } else {
+            log(chalk.red.inverse('Note not added :( Title: "' + argv.title + '" is a duplicate.'));
+        }
     }
 })
 
-/*
-*   Creating Remove command  
-*/
+/*   Creating remove command  */
 
 yargs.command({
     //name
@@ -69,13 +74,15 @@ yargs.command({
     },
     // code to execute
     handler: function (argv) {
-        notes.removeNote(argv.title);
+        if (notes.removeNote(argv.title)) {
+            log(chalk.green.inverse('Note with title of ' + argv.title + ' removed!'));
+        } else {
+            log(chalk.red.inverse('Title does not exist. No changes made!'));
+        }
     }
 })
 
-/*
-*   Creating List command  
-*/
+/*   Creating List command  */
 
 yargs.command({
     //name
@@ -88,9 +95,7 @@ yargs.command({
     }
 })
 
-/*
-*   Creating Read command  
-*/
+/*   Creating Read command  */
 
 yargs.command({
     //name
@@ -103,5 +108,6 @@ yargs.command({
     }
 })
 
-// parsing arguments with all config details 
+/* Parsing arguments with all config details */
+
 yargs.parse();

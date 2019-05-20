@@ -62,9 +62,10 @@ const addNote = function(title, body) {
         // using saveNotes function
         saveNotes(notes);
 
-        log("Notes saved!")
+        // returning true for conditionals in app
+        return true;
     } else {
-        log("Title taken. No duplicate notes allowed.")
+        return false;
     }
 }
 
@@ -84,10 +85,13 @@ const removeNote = function(title) {
     if (notes.length !== noteRemove.length) {
         // replacing notes array with array not including entry with title 
         notes = noteRemove;
-        // checking it worked 
-        log(notes);
+        // saving back into file
+        saveNotes(notes);
+        // for conditionals in app
+        return true;
     } else {
-        log('Title does not exist. No changes made.')
+        // for conditionals in app
+        return false;
     }
 }
 

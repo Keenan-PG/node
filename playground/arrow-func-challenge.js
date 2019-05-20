@@ -23,12 +23,9 @@ const tasks = {
         completed: false
     }],
     getTasksToDo () {
-        const toDoArr = this.tasks.filter((obj) => {
-            return obj.completed !== true;
-        });
-        log(toDoArr);
+        return this.tasks.filter((obj) => obj.completed !== true);
     }
 }
 
 
-tasks.getTasksToDo();
+log(tasks.getTasksToDo());

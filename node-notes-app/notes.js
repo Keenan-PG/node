@@ -3,11 +3,6 @@
 */
 const fs = require('fs');
 
-/*
-* LAZY
-*/
-const log = console.log;
-
 
 /*
 * BODY
@@ -20,12 +15,14 @@ function getNotes() {
 }
 
 // func to load existing notes (as array)
-const loadNotes = function() {
+const loadNotes = () => {
     // try catch for file access validation
     try {
         // parsing notes into js array from json
         const dJSON = fs.readFileSync('notes.json').toString();
         const data = JSON.parse(dJSON);
+
+        // data as js
         return data;
     } catch (e) {
         // returning empty array if error/no file
@@ -35,21 +32,19 @@ const loadNotes = function() {
 }
 
 // save notes
-const saveNotes = function (data) {
+const saveNotes = (data) =>  {
     // making data into JSON
     const dataJSON = JSON.stringify(data);
     fs.writeFileSync('notes.json', dataJSON);
 }
 
 // add note function
-const addNote = function(title, body) {
+const addNote = (title, body) => {
     // loading notes array into local const
     const notes = loadNotes();
 
     // filter array - if obj.title = title, put that into an array
-    const duplicateNotes = notes.filter(function (obj) {
-        return obj.title === title;
-    })
+    const duplicateNotes = notes.filter((obj) => obj.title === title);
 
     // no duplicates if array length is zero
     if (duplicateNotes.length === 0) {
@@ -65,6 +60,7 @@ const addNote = function(title, body) {
         // returning true for conditionals in app
         return true;
     } else {
+        // returning false for conditionals in app
         return false;
     }
 }
@@ -77,9 +73,7 @@ const removeNote = function(title) {
     let notes = loadNotes();
 
     // filtering to make new array of notes without the title specified
-    const noteRemove = notes.filter(function(obj) {
-        return obj.title !== title
-    });
+    const noteRemove = notes.filter((obj) => obj.title !== title);
 
     // logic to ensure length of array is not the same as it was (as if it is, it's right to assume that title doesn't exist as there were no changes made)
     if (notes.length !== noteRemove.length) {

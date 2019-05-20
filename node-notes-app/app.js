@@ -45,7 +45,7 @@ yargs.command({
         }
     },
     // code to execute
-    handler: function (argv) {
+    handler: (argv) => {
         if (notes.addNote(argv.title, argv.body)) {
             log(chalk.green.inverse(`Note added; Title: "${argv.title}",  Body: "${argv.body}"`));
         } else {
@@ -73,7 +73,7 @@ yargs.command({
         }
     },
     // code to execute
-    handler: function (argv) {
+    handler: (argv) => {
         if (notes.removeNote(argv.title)) {
             log(chalk.green.inverse(`Note with title of ${argv.title} removed!`));
         } else {
